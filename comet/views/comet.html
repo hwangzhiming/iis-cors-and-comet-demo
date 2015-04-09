@@ -1,0 +1,55 @@
+<html>
+<head>
+	<title>Server</title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h3>Comet <small> Server push demo</small></h3>
+		</div>
+		<form method="post">
+			<div class="form-group">
+				<label>Server A</label>
+				<label class="radio-inline">
+				  <input type="radio" name="statusA" value="1" checked> Normal
+				</label>
+				<label class="radio-inline">
+				  <input type="radio" name="statusA" value="2"> Warning
+				</label>
+				<label class="radio-inline">
+				  <input type="radio" name="statusA" value="3"> Error
+				</label>
+			</div>
+			<div class="form-group">
+				<label>Server B</label>
+				<label class="radio-inline">
+				  <input type="radio" name="statusB" value="1" checked> Normal
+				</label>
+				<label class="radio-inline">
+				  <input type="radio" name="statusB" value="2"> Warning
+				</label>
+				<label class="radio-inline">
+				  <input type="radio" name="statusB" value="3"> Error
+				</label>
+			</div>
+			<div class="form-group">
+				<label>Server C</label>
+				<label class="radio-inline">
+				  <input type="radio" name="statusC" value="1" checked> Normal
+				</label>
+				<label class="radio-inline">
+				  <input type="radio" name="statusC" value="2"> Warning
+				</label>
+				<label class="radio-inline">
+				  <input type="radio" name="statusC" value="3"> Error
+				</label>
+			</div>
+			<div class="form-group">
+				<input type="submit" name="action" value="Push">
+				<input type="submit" name="action" value="Clear">
+			</div>			
+		</form>
+	</div>
+</body>
+</html>
