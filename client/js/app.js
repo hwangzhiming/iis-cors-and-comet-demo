@@ -1,5 +1,29 @@
-angular.module("demo", []);
-angular.module("demo").service("weather", ["$http","$q",function ($http, $q) {
+angular.module("demo", [])
+.service("query", ["$http","$q",function ($http, $q) {
+    var request = function (req) {
+        var deferred = $q.defer();
+        $http(req)
+            .success(function (data) {
+                deferred.resolve(data);
+            }).error(function (msg, status) {
+                deferred.reject(status);
+            });
+
+        return deferred.promise;
+    }
+
+    return {
+        get: function () {
+            var req = {
+                method: 'get',
+                timeout:14*60*1000,
+                url: '/api/push'
+            }
+            return request(req);
+        }
+    }
+}])
+.service("weather", ["$http","$q",function ($http, $q) {
     var request = function (req) {
         var deferred = $q.defer();
         $http(req)
@@ -46,7 +70,7 @@ angular.module("demo").service("weather", ["$http","$q",function ($http, $q) {
     }
 }]);
 
-angular.module("demo").controller("baseCtrl", ["$scope", "weather", function ($scope, weather) {
+angular.module("demo").controller("baseCtrl", ["$scope", "weather", "query", "$timeout", function ($scope, weather, query, $timeout) {
     $scope.title = "CORS Demo"
     $scope.setSampleData = function () {
         $scope.reqData = angular.toJson({ name: "alex", age: 18 })
@@ -62,7 +86,11 @@ angular.module("demo").controller("baseCtrl", ["$scope", "weather", function ($s
             $scope.errors = msg
         });
     }
-
+    $scope.status = {
+        statusA:"0",
+        statusB:"0",
+        statusC:"0"
+    }
     $scope.post = function () {
         promise = weather.post(angular.fromJson($scope.reqData));
         promise.then(function (data) {
@@ -90,4 +118,20 @@ angular.module("demo").controller("baseCtrl", ["$scope", "weather", function ($s
         });
     }
 
+
+    /*long pulling*/
+    var longPull = function () {
+        $timeout(function(){
+            promise = query.get()
+            promise.then(function(data){
+                $scope.status = data;
+                longPull();
+            },function(msg) {
+                $scope.errors = msg
+                longPull(); 
+            });
+        },0)
+    }
+
+    longPull(); 
 }]);

@@ -11,43 +11,43 @@
 		<form method="post">
 			<div class="form-group">
 				<label>Server A</label>
-				<label class="radio-inline">
-				  <input type="radio" name="statusA" value="1" checked> Normal
+				<label class="radio-inline text-success">
+				  <input type="radio" name="statusA" value="1" <%= statusA == "1" ? 'checked' : '' %> > Normal
 				</label>
-				<label class="radio-inline">
-				  <input type="radio" name="statusA" value="2"> Warning
+				<label class="radio-inline text-warning">
+				  <input type="radio" name="statusA" value="2" <%= statusA == "2" ? 'checked' : '' %> > Warning
 				</label>
-				<label class="radio-inline">
-				  <input type="radio" name="statusA" value="3"> Error
+				<label class="radio-inline text-danger">
+				  <input type="radio" name="statusA" value="3" <%= statusA == "3" ? 'checked' : '' %> > Error
 				</label>
 			</div>
 			<div class="form-group">
 				<label>Server B</label>
-				<label class="radio-inline">
-				  <input type="radio" name="statusB" value="1" checked> Normal
+				<label class="radio-inline text-success">
+				  <input type="radio" name="statusB" value="1" <%= statusB == "1" ? 'checked' : '' %>> Normal
 				</label>
-				<label class="radio-inline">
-				  <input type="radio" name="statusB" value="2"> Warning
+				<label class="radio-inline text-warning">
+				  <input type="radio" name="statusB" value="2" <%= statusB == "2" ? 'checked' : '' %>> Warning
 				</label>
-				<label class="radio-inline">
-				  <input type="radio" name="statusB" value="3"> Error
+				<label class="radio-inline text-danger">
+				  <input type="radio" name="statusB" value="3" <%= statusB == "3" ? 'checked' : '' %>> Error
 				</label>
 			</div>
 			<div class="form-group">
 				<label>Server C</label>
-				<label class="radio-inline">
-				  <input type="radio" name="statusC" value="1" checked> Normal
+				<label class="radio-inline text-success">
+				  <input type="radio" name="statusC" value="1" <%= statusC == "1" ? 'checked' : '' %>> Normal
 				</label>
-				<label class="radio-inline">
-				  <input type="radio" name="statusC" value="2"> Warning
+				<label class="radio-inline text-warning">
+				  <input type="radio" name="statusC" value="2" <%= statusC == "2" ? 'checked' : '' %>> Warning
 				</label>
-				<label class="radio-inline">
-				  <input type="radio" name="statusC" value="3"> Error
+				<label class="radio-inline text-danger">
+				  <input type="radio" name="statusC" value="3" <%= statusC == "3" ? 'checked' : '' %>> Error
 				</label>
 			</div>
 			<div class="form-group">
-				<input type="submit" name="action" value="Push">
-				<input type="submit" name="action" value="Clear">
+				<input class="btn btn-primary" type="submit" name="action" value="Push">
+				<input class="btn btn-default" type="submit" name="action" value="Clear">
 			</div>			
 		</form>
 	</div>

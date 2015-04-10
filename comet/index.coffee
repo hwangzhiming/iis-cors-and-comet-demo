@@ -10,13 +10,18 @@ app.set "view engine", "html"
 app.use bodyParser.json() # for parsing application/json
 app.use bodyParser.urlencoded extended: true # for parsing application/x-www-form-urlencoded
 app.use express.static "#{__dirname}"
-
+app.use (req, res, next)->
+    res.set "Cache-Control","no-cache"
+    next()
 app.get "/", (req,res)->
     res.render "home"
 
 # Comet apis
 app.get "/comet", (req,res)->
-    res.render "comet"
+    res.render "comet", 
+        statusA:1
+        statusB:1
+        statusC:1
 
 app.post "/comet", (req,res)->
     data = req.body
@@ -27,7 +32,7 @@ app.post "/comet", (req,res)->
     else if data.action =="Clear"
         queue.clear()
     console.log queue.get()
-    res.redirect "/comet"
+    res.render "comet", data
 request_timer = null
 
 app.get "/push", (req,res)->
@@ -52,6 +57,7 @@ app.get "/push", (req,res)->
     , 60000*15
 
     res.on "end", ()->
+        console.log "request end"
         clearTimeout response_timer
         clearTimeout request_timer
 
